@@ -32,6 +32,27 @@ public class AddressBook {
         public String toString() {
             return  street + ", " + numberOfHouse + ", " + numberOfFlat;
         }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj)
+                return true;
+            if (obj == null)
+                return false;
+            if (getClass() != obj.getClass())
+                return false;
+            Address other = (Address) obj;
+            if (!street.equals(other.street))
+                return false;
+            if (numberOfHouse != other.numberOfHouse)
+                return false;
+            return numberOfFlat == other.numberOfFlat;
+        }
+
+        @Override
+        public int hashCode() {
+            return street.hashCode();
+        }
     }
 
     public Map<String, Address> mapOfAddresses;
@@ -41,7 +62,7 @@ public class AddressBook {
     }
 
     public void add(Pair<String, Address> pairForAdd) {
-       mapOfAddresses.put(pairForAdd.getKey(), pairForAdd.getValue());
+        if (!mapOfAddresses.containsKey(pairForAdd.getKey()))mapOfAddresses.put(pairForAdd.getKey(), pairForAdd.getValue());
     }
 
     public void del(String person) {
@@ -89,5 +110,21 @@ public class AddressBook {
        sb.append("}");
        return sb.toString();
    }
-}
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        AddressBook other = (AddressBook) obj;
+        return mapOfAddresses.equals(other.mapOfAddresses);
+    }
+
+    @Override
+    public int hashCode() {
+        return mapOfAddresses.hashCode();
+    }
+}
