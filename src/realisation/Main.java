@@ -3,7 +3,6 @@ package realisation;
 import java.util.Map;
 import java.util.HashMap;
 import addressbook.AddressBook;
-import javafx.util.Pair;
 import addressbook.AddressBook.Address;
 
 public class Main {
@@ -31,7 +30,7 @@ public class Main {
         System.out.println(firstAddressBook.listOfPeople("Офицерский перекрёсток", 82));
 
         //Print result of method "add"
-        firstAddressBook.add(new Pair<>("Игнатов", new Address("Угрешский 1-й проезд", 91, 491)));
+        firstAddressBook.add("Игнатов", new Address("Угрешский 1-й проезд", 91, 491));
         System.out.println("Адресная книга с новой записью: ");
         System.out.println(firstAddressBook);
 

@@ -1,9 +1,9 @@
 package addressbook;
 
-import javafx.util.Pair;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.List;
+import java.util.Objects;
 
 public class AddressBook {
 
@@ -18,6 +18,18 @@ public class AddressBook {
             this.numberOfHouse = numberOfHouse;
             this.numberOfFlat = numberOfFlat;
         } //Constructor of class "Address"
+
+        public String getStreet() {
+            return street;
+        }
+
+        public int getNumberOfHouse() {
+            return numberOfHouse;
+        }
+
+        public int getNumberOfFlat() {
+            return numberOfFlat;
+        }
 
         @Override
         public String toString() {
@@ -42,7 +54,7 @@ public class AddressBook {
 
         @Override
         public int hashCode() {
-            return street.hashCode();
+            return Objects.hash(street, numberOfHouse, numberOfFlat);
         }
     } //Class "Address"
 
@@ -52,16 +64,28 @@ public class AddressBook {
         this.mapOfAddresses = mapOfAddresses;
     } //Constructor of Class "AddressBook"
 
-    public void add(Pair<String, Address> pairForAdd) {
-        if (!mapOfAddresses.containsKey(pairForAdd.getKey()))mapOfAddresses.put(pairForAdd.getKey(), pairForAdd.getValue());
+    public boolean add(String person, Address address) {
+        if (!mapOfAddresses.containsKey(person)) {
+            mapOfAddresses.put(person, address);
+            return true;
+        }
+        else return false;
     } //Method adding a couple of people to the address to address book
 
-    public void del(String person) {
-        mapOfAddresses.remove(person);
+    public boolean del(String person) {
+        if (mapOfAddresses.containsKey(person)) {
+            mapOfAddresses.remove(person);
+            return true;
+        }
+        return false;
     } //Method deleting an address book entry
 
-    public void change(String person, Address newAddress) {
-        if (mapOfAddresses.containsKey(person)) mapOfAddresses.put(person, newAddress);
+    public boolean change(String person, Address newAddress) {
+        if (mapOfAddresses.containsKey(person)) {
+            mapOfAddresses.put(person, newAddress);
+        return true;
+        }
+        return false;
     } //Method changing an address book entry
 
     public Address getAddress(String person) {
