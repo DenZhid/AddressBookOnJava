@@ -31,7 +31,7 @@ public class AddressBookTest {
     @Test
    public void add() {
         //Make a new "AddressBook"
-        AddressBook book = new AddressBook(new HashMap<>());
+        AddressBook book = new AddressBook();
         book.add("Круглова", new Address("Офицерский пер", 82, 28));
 
         //Making "AddressBook" for testing
@@ -39,7 +39,7 @@ public class AddressBookTest {
         mapForTest.put("Круглова", new Address("Офицерский пер", 82, 28));
         AddressBook bookForTest = new AddressBook(mapForTest);
 
-        Assert.assertEquals(book, bookForTest); //test 1
+       Assert.assertEquals(book, bookForTest); //test 1
 
         //Adding another member of address book
         book.add("Стручкова", new Address("Офицерский пер", 82, 118));
@@ -79,7 +79,7 @@ public class AddressBookTest {
     @Test
     public void del() {
         //Make a new "AddressBook"
-        AddressBook book = new AddressBook(new HashMap<>());
+        AddressBook book = new AddressBook();
         book.add("Круглова", new Address("Офицерский перекрёсток", 82, 28));
         book.add("Стручкова", new Address("Офицерский перекрёсток", 82, 118));
         book.add("Баскова", new Address("Офицерский перекрёсток", 5, 251));
@@ -114,7 +114,7 @@ public class AddressBookTest {
     @Test
     public void change() {
         //Make a new "AddressBook"
-        AddressBook book = new AddressBook(new HashMap<>());
+        AddressBook book = new AddressBook();
         book.add("Круглова", new Address("Офицерский перекрёсток", 82, 28));
 
         //Make an "AddressBook" for testing
@@ -148,7 +148,7 @@ public class AddressBookTest {
     @Test
     public void getAddress() {
         //Make a new "AddressBook"
-        AddressBook book = new AddressBook(new HashMap<>());
+        AddressBook book = new AddressBook();
         book.add("Круглова", new Address("Офицерский перекрёсток", 82, 28));
 
         Assert.assertEquals(
@@ -161,6 +161,8 @@ public class AddressBookTest {
                 book.getAddress("Шанский"),
                 new Address("улица Грекова", 36, 115)
         ); //test 2
+
+        Assert.assertNull(book.getAddress("Байков"));
     }
 
     @Test
@@ -175,7 +177,7 @@ public class AddressBookTest {
         //Method with input data of the form (street)
         Assert.assertEquals(
                 book.listOfPeople("Офицерский пер"),
-                Arrays.asList("Стручкова", "Баскова", "Круглова")
+                Arrays.asList("Стручкова", "Круглова", "Баскова")
         ); //test 1
 
         //Method with input data of the form (street, numberOfHouse)

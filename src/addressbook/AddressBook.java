@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.List;
 import java.util.Objects;
+import java.util.HashMap;
 
 public class AddressBook {
 
@@ -61,31 +62,23 @@ public class AddressBook {
     private Map<String, Address> mapOfAddresses;
 
     public AddressBook(Map<String, Address> mapOfAddresses) {
-        this.mapOfAddresses = mapOfAddresses;
+        this.mapOfAddresses = new HashMap<>(mapOfAddresses);
     } //Constructor of Class "AddressBook"
 
+    public AddressBook() {
+            Map<String, Address> mapOfAddresses = new HashMap<>();
+    } //Empty constructor of Class "AddressBook"
+
     public boolean add(String person, Address address) {
-        if (!mapOfAddresses.containsKey(person)) {
-            mapOfAddresses.put(person, address);
-            return true;
-        }
-        else return false;
+        return mapOfAddresses.putIfAbsent(person, address) != null;
     } //Method adding a couple of people to the address to address book
 
     public boolean del(String person) {
-        if (mapOfAddresses.containsKey(person)) {
-            mapOfAddresses.remove(person);
-            return true;
-        }
-        return false;
+        return mapOfAddresses.remove(person) != null;
     } //Method deleting an address book entry
 
     public boolean change(String person, Address newAddress) {
-        if (mapOfAddresses.containsKey(person)) {
-            mapOfAddresses.put(person, newAddress);
-        return true;
-        }
-        return false;
+        return mapOfAddresses.replace(person, newAddress) != null;
     } //Method changing an address book entry
 
     public Address getAddress(String person) {
