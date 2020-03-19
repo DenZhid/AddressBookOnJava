@@ -67,7 +67,7 @@ public class AddressBook {
 
     public AddressBook() {
             this.mapOfAddresses = new HashMap<>();
-    } // Empty constructor of Class "AddressBook"
+    } //Empty constructor of Class "AddressBook"
 
     public boolean add(String person, Address address) {
         return mapOfAddresses.putIfAbsent(person, address) == null;
