@@ -66,11 +66,11 @@ public class AddressBook {
     } //Constructor of Class "AddressBook"
 
     public AddressBook() {
-            Map<String, Address> mapOfAddresses = new HashMap<>();
+            this.mapOfAddresses = new HashMap<>();
     } //Empty constructor of Class "AddressBook"
 
     public boolean add(String person, Address address) {
-        return mapOfAddresses.putIfAbsent(person, address) != null;
+        return mapOfAddresses.putIfAbsent(person, address) == null;
     } //Method adding a couple of people to the address to address book
 
     public boolean del(String person) {

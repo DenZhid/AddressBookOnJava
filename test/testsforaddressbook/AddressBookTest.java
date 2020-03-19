@@ -46,6 +46,7 @@ public class AddressBookTest {
 
         //Adding this element to a testing Map, which forming the "AddressBook" for testing
         mapForTest.put("Стручкова", new Address("Офицерский пер", 82, 118));
+        bookForTest =  new AddressBook(mapForTest);
 
         Assert.assertEquals(book, bookForTest); //test 2
 
@@ -58,6 +59,7 @@ public class AddressBookTest {
 
         //Adding desired element to the Map
         mapForTest.put("", new Address("", 0, 0));
+        bookForTest = new AddressBook(mapForTest);
 
         Assert.assertEquals(book, bookForTest); //test 3
 
@@ -95,10 +97,12 @@ public class AddressBookTest {
 
         book.del("Стручкова");
         mapForTest.remove("Стручкова");
+        bookForTest = new AddressBook(mapForTest);
         Assert.assertEquals(book, bookForTest); //test 2
 
         book.del("Круглова");
         mapForTest.remove("Круглова");
+        bookForTest = new AddressBook(mapForTest);
         Assert.assertEquals(book, bookForTest); //test 3
 
         book.del("Игнатов");
